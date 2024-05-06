@@ -31,7 +31,7 @@ class UpdateOrderStatusFormRequest extends FormRequest
 
     public function messages(){
         return [
-            'id.required' => 'User id field is required',
+            'order_id.required' => 'User id field is required',
             'status.required' => 'Status field is required',
         ];
     }

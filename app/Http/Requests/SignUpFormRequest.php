@@ -27,7 +27,7 @@ class SignUpFormRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'user_role' => 'required|in:admin,client',
-            'phone_number' => 'required|email|unique:users',
+            'phone_number' => 'required|min:10|regex:/(0)[0-9]/|not_regex:/[a-z]/|unique:users',
             'address_1' => 'required',
             'address_2' => 'string',
             'city' => 'required',

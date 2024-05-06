@@ -60,9 +60,10 @@ class UserServices{
             'pincode' => $request['pincode'],
             "state"=>$request['state'],
             "country"=>$request['country'],
+            "password"=> bcrypt($request['password']),
         ];
 
-        if(User::getUserByEmail($request['phone_number'])){
+        if(User::getUserByPhone($request['phone_number'])){
             throw new AppException("Email Address is already registerd with us. PLease login.");
         }
         else{

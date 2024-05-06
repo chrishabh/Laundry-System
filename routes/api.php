@@ -25,12 +25,12 @@ Route::group(['middleware'=> ['tracker']],function () {
 
         Route::group(['namespace' => 'Api\Auth'], function () {
             Route::group(['middleware'=> ['auth:api']],function () {
-                Route::get('profile','UserController@getUserList');
-                Route::post('upload-photo','UserController@getUserList');
+                Route::get('profile','UserController@userProfile');
+                Route::post('upload-photo','UserController@uploadPhoto');
                 Route::post('create-order','OrdersController@createOrder');
                 Route::post('edit-order','OrdersController@editOrder');
-                Route::get('order-listing','OrdersController@orderListing');
-                Route::get('update-status','OrdersController@updateOrderStatus');
+                Route::post('order-listing','OrdersController@orderListing');
+                Route::post('update-status','OrdersController@updateOrderStatus');
             });
             
         });

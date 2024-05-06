@@ -29,13 +29,12 @@ class OrdersController extends Controller
 
     public static function orderListing(OrderListingFormRequest $request){
         $requestData = $request->validated();
-        UserOrders::createOrder($request);
-        return  response()->success();
+        return  response()->data(['order_list'=> UserOrders::orderListing($request)]);
     }
 
     public static function updateOrderStatus(UpdateOrderStatusFormRequest $request){
         $requestData = $request->validated();
-        UserOrders::createOrder($request);
+        UserOrders::updateOrderStatus($request);
         return  response()->success();
     }
 

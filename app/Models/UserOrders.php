@@ -11,7 +11,18 @@ class UserOrders extends Model
     use HasFactory;
 
     public static function createOrder($request){
-        UserOrders::insert($request);
+
+        $data = [
+            'user_id' => Auth::User()->id,
+            'pickup_date' => $request['pickup_date'],
+            'delivery_date' => $request['delivery_date'],
+            'description' => $request['description'],
+            'count' => $request['count'],
+            'price' => $request['price'],
+            'status' => 'New',
+        ];
+
+        UserOrders::insert($data);
     }
 
     public static function editOrder($request){

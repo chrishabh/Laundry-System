@@ -31,7 +31,7 @@ class EditOrderFormRequest extends FormRequest
             'description' => 'required',
             'count' => 'required',
             'price' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
            
         ];
       

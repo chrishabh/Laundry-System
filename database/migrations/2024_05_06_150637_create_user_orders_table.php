@@ -16,12 +16,12 @@ class CreateUserOrdersTable extends Migration
         Schema::create('user_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
-            $table->text('pickup_date')->nullable();  
-            $table->text('delivery_date')->nullable();   
+            $table->date('pickup_date')->nullable();  
+            $table->date('delivery_date')->nullable();   
             $table->text('description')->nullable();  
             $table->unsignedInteger('count')->nullable();   
             $table->string('price')->nullable();  
-            $table->enum('status',['New','In-Progress','Out for Delivery','Delivered'])->nullable();  
+            $table->enum('status',['New','In-Progress','Out for Delivery','Delivered'])->default('New');  
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
