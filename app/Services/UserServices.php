@@ -23,9 +23,10 @@ class UserServices{
         } elseif(!Auth::validate(['phone_number'=>$request['phone_number'],'password'=>$request['password']])) {
             throw new AppException("Invalid Credentials");
         }
-        //OtpVerificationServices::emailVerificationRequest($request);
 
         $user['token'] = $user->createToken('MyApp')->accessToken;
+
+        OTPVerificationServices::sendOtpService($request);
 
         return $user;
 
