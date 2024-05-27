@@ -79,7 +79,7 @@ class OTPVerificationServices{
             $verification['verification_status'] = Constants::VERIFIED;
             OtpVerifications::updateOtpStatus($request['phone_number'],Constants::LOGIN_PHONE_VERIFICATION,Constants::PHONE_2FA_VERIFICATION,$verification);
         } else {
-            throw new AppException("Invalid Request!");
+            throw new AppException("Invalid OTP (One-Time Password).");
         }
         
     }
