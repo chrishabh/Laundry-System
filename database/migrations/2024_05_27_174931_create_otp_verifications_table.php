@@ -22,6 +22,7 @@ class CreateOtpVerificationsTable extends Migration
             $table->string('otp_code',50)->nullable();
             $table->string('verification_status',200)->nullable();
             $table->string('source',200)->nullable();
+            $table->text('message_id')->nullable();
 
             //Default Mandatory Metadata fields
             $table->softDeletes();

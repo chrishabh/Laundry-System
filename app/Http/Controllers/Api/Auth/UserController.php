@@ -13,7 +13,9 @@ use App\Http\Requests\LinkUserAndFloorsFormRequest;
 use App\Http\Requests\LinkUserAndProjectsFormRequest;
 use App\Http\Requests\SignUpFormRequest;
 use App\Http\Requests\UpdateUserRoleFormRequest;
+use App\Http\Requests\VerifyOtpServiceFormRequest;
 use App\Models\LookUpValue;
+use App\Services\OTPVerificationServices;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
@@ -98,31 +100,11 @@ class UserController extends Controller
         $data = $user->decryptPassword($request);
         return  response()->data($data);
     }
-    public static function getUserProjectLinkingDetails(GetPayToDetailsFormRequest $request)
+
+    public static function verifyOtp(VerifyOtpServiceFormRequest $request)
     {
-        $requestData    =   $request->validated();
-        $user           =   new UserServices();
-        $data           = $user->getUserProjectLinkingDetails($request);
-
-        return  response()->data($data);
-    }
-
-    public static function linkUserAndProjects(LinkUserAndProjectsFormRequest $request)
-    {
-        $requestData    =   $request->validated();
-        $user           =   new UserServices();
-        $data           = $user->linkUserAndProjects($request);
-
+        $requestData = $request->validated();
+        OTPVerificationServices::verifyOtpRequest($request);
         return  response()->success();
     }
-
-    public static function linkUserAndFloor(LinkUserAndFloorsFormRequest $request)
-    {
-        $requestData    =   $request->validated();
-        $user           =   new UserServices();
-        $data           = $user->linkUserAndfloor($request);
-
-        return  response()->success();
-    }
-    
 }
