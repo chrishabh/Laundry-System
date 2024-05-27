@@ -26,7 +26,7 @@ class UserServices{
 
         $user['token'] = $user->createToken('MyApp')->accessToken;
 
-        OTPVerificationServices::sendOtpService($request);
+        OTPVerificationServices::sendOtpService($request,$user);
 
         return $user;
 

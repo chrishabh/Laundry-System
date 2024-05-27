@@ -12,7 +12,7 @@ use Twilio\Rest\Client;
 
 class OTPVerificationServices{
 
-    public static function sendOtpService($request)
+    public static function sendOtpService($request,$user)
     {
         $sid    = env("SID");
         $token  = env("TWILIO_AUTH");
@@ -21,7 +21,6 @@ class OTPVerificationServices{
         $phone_number = preg_replace("/[^0-9]/", "", $request['phone_number']);
         $phone_number = ((strlen($phone_number) == 10))? "+91".$phone_number : $phone_number;
     
-        $user = Auth::User();
         // $timeout = env('RESEND_EXPIRY_TIME');
         // $lastOtp = OtpVerifications::orderBy('created_at', 'desc')->where('user_id',$user->id)->first();
         // if($lastOtp != null && Carbon::now()->diffInSeconds($lastOtp->created_at) < $timeout){
