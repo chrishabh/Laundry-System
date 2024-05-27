@@ -16,7 +16,7 @@ class CreateOtpVerificationsTable extends Migration
         Schema::create('otp_verifications', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
             $table->string('type_of_verification',100)->nullable();
             $table->string('meta_data',150)->nullable();
             $table->string('otp_code',50)->nullable();
