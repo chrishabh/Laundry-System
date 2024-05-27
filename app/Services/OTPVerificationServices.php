@@ -40,7 +40,7 @@ class OTPVerificationServices{
             OtpVerifications::insertOtpRequest([
                 'user_id' => $user->id,
                 'type_of_verification' => Constants::LOGIN_PHONE_VERIFICATION,
-                "meta_data" => $phone_number,
+                "meta_data" => $request['phone_number'],
                 "otp_code" => $otp,
                 'verification_status' => Constants::UN_VERIFIED,
                 'source' =>  Constants::PHONE_2FA_VERIFICATION,
@@ -53,7 +53,7 @@ class OTPVerificationServices{
             OtpVerifications::insertOtpRequest([
                 'user_id' => $user->id,
                 'type_of_verification' => Constants::LOGIN_PHONE_VERIFICATION,
-                "meta_data" => $phone_number,
+                "meta_data" => $request['phone_number'],
                 "otp_code" => $otp,
                 'verification_status' => Constants::UN_VERIFIED,
                 'source' => Constants::PHONE_2FA_VERIFICATION,
