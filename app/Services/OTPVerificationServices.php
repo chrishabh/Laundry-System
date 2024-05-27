@@ -12,8 +12,8 @@ class OTPVerificationServices{
 
     public static function sendOtpService($request)
     {
-        $sid    = "AC01c2a80c831c41a9f678e2547b23d43e";
-        $token  = "d9141ca5d06afc5d76f78e4a974c41d4";
+        $sid    = env("SID");
+        $token  = env("TWILIO_AUTH");
         $twilio = new Client($sid, $token);
 
         $phone_number = preg_replace("/[^0-9]/", "", $request['phone_number']);
@@ -58,7 +58,7 @@ class OTPVerificationServices{
 
     public static function verifyOtpRequest($request)
     {
-        
+
     }
 
 }
