@@ -25,7 +25,7 @@ Route::group(['middleware'=> ['tracker']],function () {
 
         Route::group(['namespace' => 'Api\Auth'], function () {
             Route::group(['middleware'=> ['auth:api']],function () {
-                Route::get('verify-otp','UserController@verifyOtp');
+                Route::post('verify-otp','UserController@verifyOtp');
                 Route::get('profile','UserController@userProfile');
                 Route::post('upload-photo','UserController@uploadPhoto');
                 Route::post('create-order','OrdersController@createOrder');
