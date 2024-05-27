@@ -31,7 +31,7 @@ class OTPVerificationServices{
             );
 
             OtpVerifications::insertOtpRequest([
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::User()->id,
                 'type_of_verification' => "LOGIN_VERIFICATION",
                 "meta_data" => $phone_number,
                 "otp_code" => $otp,
@@ -43,7 +43,7 @@ class OTPVerificationServices{
             $otp = 123456;
 
             OtpVerifications::insertOtpRequest([
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::User()->id,
                 'type_of_verification' => "LOGIN_VERIFICATION",
                 "meta_data" => $phone_number,
                 "otp_code" => $otp,
