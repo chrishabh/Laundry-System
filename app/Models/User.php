@@ -62,7 +62,7 @@ class User extends Authenticatable
 
     public static function getProfileById($user_id)
     {
-        return User::leftjoin('user_photos', 'user_photos.user_id', '=', 'users.id')->whereNull('users.deleted_at')->whereNull('user_photos.deleted_at')->where('users.id', $user_id)->first();
+        return User::select( 'users.id', 'users.first_name', 'users.last_name','users.phone_number','user_photos.photo_name','user_photos.path')->leftjoin('user_photos', 'user_photos.user_id', '=', 'users.id')->whereNull('users.deleted_at')->whereNull('user_photos.deleted_at')->where('users.id', $user_id)->first();
     }
 
     public static function getUserList()
