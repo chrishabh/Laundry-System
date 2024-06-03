@@ -63,7 +63,7 @@ class UserController extends Controller
     public static function updateProfile(UpdateUserProfileFormRequest  $request)
     {
         $user = new UserServices();
-        if($user->updateUserRole($request)){
+        if($user->updateProfile($request)){
             return  response()->success();
         }else{
             throw new AppException("Something went wrong!");
