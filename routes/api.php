@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=> ['tracker']],function () {
         Route::group(['namespace' => 'Api\Auth'], function () {
 
-            Route::post('request-otp','UserController@userLogin');		
+            Route::post('request-otp','UserController@requestOTP');		
             Route::post('login','UserController@userLogin');		
             //Route::post('register','UserController@userSignUp');
             Route::get('user-list','UserController@getUserList');
