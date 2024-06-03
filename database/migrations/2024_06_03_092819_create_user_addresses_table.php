@@ -22,7 +22,6 @@ class CreateUserAddressesTable extends Migration
             $table->text('pincode')->nullable();
             $table->text('state')->nullable();
             $table->text('country')->nullable();
-            $table->text('country')->nullable();
             $table->enum('default',['0','1'])->default(NULL);  
 
             $table->softDeletes();
