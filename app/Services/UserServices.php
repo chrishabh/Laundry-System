@@ -219,7 +219,7 @@ class UserServices{
         ];
         User::updatePassword(Auth::User()->id,$user_data);
 
-        foreach($request['address'] as $key => &$value)
+        foreach($request['address'] as $key => $value)
         {
             if(isset($value['id'])){
 
