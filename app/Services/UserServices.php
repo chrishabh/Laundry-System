@@ -223,12 +223,13 @@ class UserServices{
         {
             if(isset($value['id'])){
 
-                $value['user_id'] = Auth::User()->id;
-                UserAddress::updateAddress($value);
+                UserAddress::updateAddress(Auth::User()->id,$value);
 
             }else{
-                $value['user_id'] = Auth::User()->id;
-                UserAddress::insertAddress($value);
+                $value_data['user_id'] = Auth::User()->id;
+
+                $value_data = $value;
+                UserAddress::insertAddress($value_data);
 
             }
         }
