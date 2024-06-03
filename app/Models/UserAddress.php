@@ -29,6 +29,6 @@ class UserAddress extends Model
 
     public static function updateAddress($id,$data = [])
     {
-        UserAddress::whereNull('deleted_at')->update($data)
+        UserAddress::whereNull('deleted_at')->update($data);
     }
 }
