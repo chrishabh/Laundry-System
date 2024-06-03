@@ -62,6 +62,7 @@ class UserController extends Controller
 
     public static function updateProfile(UpdateUserProfileFormRequest  $request)
     {
+        $requestData = $request->validated();
         $user = new UserServices();
         if($user->updateProfile($request)){
             return  response()->success();
