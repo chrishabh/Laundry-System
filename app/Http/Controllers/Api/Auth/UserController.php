@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Exceptions\AppException;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Services\UserServices;
@@ -12,6 +13,7 @@ use App\Http\Requests\GetProjectDetialsFormRequest;
 use App\Http\Requests\LinkUserAndFloorsFormRequest;
 use App\Http\Requests\LinkUserAndProjectsFormRequest;
 use App\Http\Requests\SignUpFormRequest;
+use App\Http\Requests\UpdateUserProfileFormRequest;
 use App\Http\Requests\UpdateUserRoleFormRequest;
 use App\Http\Requests\VerifyOtpServiceFormRequest;
 use App\Models\LookUpValue;
@@ -56,6 +58,16 @@ class UserController extends Controller
         $user = new UserServices();
         $data = $user->profile();
         return  response()->data(['profile'=>$data]);
+    }
+
+    public static function updateProfile(UpdateUserProfileFormRequest  $request)
+    {
+        $user = new UserServices();
+        if($user->updateUserRole($request)){
+            return  response()->success();
+        }else{
+            throw new AppException("Something went wrong!");
+        }
     }
 
     public static function uploadPhoto(Request $request)

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Exceptions\AppException;
 use App\Exceptions\BusinessExceptions\RegisterFailedException;
+use App\Models\UserAddress;
 use App\Models\UserAuthorization;
 use App\Models\UserPhotos;
 use App\Models\UserProjectLinking;
@@ -42,8 +43,12 @@ class UserServices{
     public function profile(){
 
         $user = User::getProfileById(Auth::User()->id);
+        $address = UserAddress::getUserAddress();
 
-        return $user;
+        return [
+            'user_detail' => $user,
+            'address' => $address
+        ];
 
     }
 
@@ -204,5 +209,28 @@ class UserServices{
         $password['decrypted_password'] = decrypt($user['password']);
 
         return $password;
+    }
+
+    public static function updateProfile($request)
+    {
+        $user_data = [
+            'first_name' => $request['first_name'],
+            'last_name' => $request['last_name']
+        ];
+        User::updatePassword(Auth::User()->id,$user_data);
+
+        foreach($request['address'] as $value)
+        {
+            if(isset($value['id'])){
+
+                UserAddress::updateAddress($value);
+
+            }else{
+
+                UserAddress::insertAddress($value);
+
+            }
+        }
+        return true;
     }
 }

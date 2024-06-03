@@ -27,9 +27,11 @@ class CreateOrderFormRequest extends FormRequest
        return [
             'pickup_date' => 'required',
             'delivery_date' => 'required',
-            'description' => 'required',
+            'items' => 'required|array',
+            'items.*.description' => 'required',
+            'items.*.price' => 'required',
             'count' => 'required',
-            'price' => 'required',
+            'notes' => 'nullable',
             //'status' => 'required',
            
         ];
@@ -41,9 +43,9 @@ class CreateOrderFormRequest extends FormRequest
         return [
             'pickup_date.required' => 'Pick Up Date is required',
             'delivery_date.required' => 'Delivery Date is required',
-            'description.required' => 'Description Id is required',
+            'items.*.description.required' => 'Description Id is required',
             'count.required' => 'Count is required',
-            'price.required' => 'Price is required',
+            'items.*.price.required' => 'Price is required',
             'status.required' => 'Statue Id is required',
         ];
     }

@@ -12,17 +12,21 @@ class UserOrders extends Model
 
     public static function createOrder($request){
 
-        $data = [
-            'user_id' => Auth::User()->id,
-            'pickup_date' => $request['pickup_date'],
-            'delivery_date' => $request['delivery_date'],
-            'description' => $request['description'],
-            'count' => $request['count'],
-            'price' => $request['price'],
-            'status' => 'New',
-        ];
-
-        UserOrders::insert($data);
+        foreach($request['items'] as $value){
+            $data = [
+                'user_id' => Auth::User()->id,
+                'pickup_date' => $request['pickup_date'],
+                'delivery_date' => $request['delivery_date'],
+                'description' => $value['description'],
+                'count' => $request['count'],
+                'price' => $value['price'],
+                'status' => 'New',
+                'notes' => $request['notes']
+            ];
+    
+            UserOrders::insert($data);
+        }
+     
     }
 
     public static function editOrder($request){

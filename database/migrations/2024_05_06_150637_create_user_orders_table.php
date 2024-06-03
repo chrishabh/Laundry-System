@@ -21,7 +21,8 @@ class CreateUserOrdersTable extends Migration
             $table->text('description')->nullable();  
             $table->unsignedInteger('count')->nullable();   
             $table->string('price')->nullable();  
-            $table->enum('status',['New','In-Progress','Out for Delivery','Delivered'])->default('New');  
+            $table->enum('status',['New','In-Progress','Out for Delivery','Delivered'])->default('New'); 
+            $table->longText('notes')->nullable();   
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
