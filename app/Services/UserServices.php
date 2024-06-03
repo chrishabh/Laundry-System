@@ -23,6 +23,10 @@ class UserServices{
              
             ];
             User::register_user($input);
+            if(OTPVerificationServices::verifyOtpRequest($request))
+            {
+                $user['token'] = $user->createToken('MyApp')->accessToken;
+            }
         } else{
             if(OTPVerificationServices::verifyOtpRequest($request))
             {
