@@ -219,14 +219,15 @@ class UserServices{
         ];
         User::updatePassword(Auth::User()->id,$user_data);
 
-        foreach($request['address'] as $value)
+        foreach($request['address'] as &$value)
         {
             if(isset($value['id'])){
 
+                $value['user_id'] = Auth::User()->id;
                 UserAddress::updateAddress($value);
 
             }else{
-
+                $value['user_id'] = Auth::User()->id;
                 UserAddress::insertAddress($value);
 
             }
