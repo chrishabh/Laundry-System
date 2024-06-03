@@ -213,23 +213,24 @@ class UserServices{
 
     public static function updateProfile($request)
     {
+        $address = [];
         $user_data = [
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name']
         ];
         User::updatePassword(Auth::User()->id,$user_data);
 
-        foreach($request['address'] as $key => $value)
+        $address = $request['address'];
+
+        foreach($address as $key => &$value)
         {
             if(isset($value['id'])){
 
                 UserAddress::updateAddress(Auth::User()->id,$value);
 
             }else{
-                $value_data['user_id'] = Auth::User()->id;
-
-                $value_data = $value;
-                UserAddress::insertAddress($value_data);
+                $value['user_id'] = Auth::User()->id;
+                UserAddress::insertAddress($value);
 
             }
         }
