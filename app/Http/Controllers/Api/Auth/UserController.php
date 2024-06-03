@@ -32,6 +32,15 @@ class UserController extends Controller
 		return  response()->data([],'Registration Success');
     }
 
+    public static function requestOTP(VerifyOtpServiceFormRequest  $request)
+    {
+
+        $requestData = $request->validated();
+        OTPVerificationServices::sendOtpService($request);
+        return  response()->success();
+
+    }
+
     public static function userLogin(LoginFormRequest  $request)
     {
 

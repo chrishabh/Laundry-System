@@ -20,13 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->unique();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('user_role')->nullable();
-            $table->string('password');
-            $table->text('address_1')->nullable();
-            $table->text('address_2')->nullable();
-            $table->text('city')->nullable();
-            $table->text('pincode')->nullable();
-            $table->text('state')->nullable();
-            $table->text('country')->nullable();
+
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamp('created_at')->useCurrent();

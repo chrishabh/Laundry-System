@@ -15,17 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware'=> ['tracker']],function () {
         Route::group(['namespace' => 'Api\Auth'], function () {
-          
-                Route::post('login','UserController@userLogin');		
-                Route::post('register','UserController@userSignUp');
-                Route::get('user-list','UserController@getUserList');
-                Route::post('update-user','UserController@updateUser');
-                Route::post('forgot-password','UserController@forgotPassword');
+
+            Route::post('request-otp','UserController@userLogin');		
+            Route::post('login','UserController@userLogin');		
+            //Route::post('register','UserController@userSignUp');
+            Route::get('user-list','UserController@getUserList');
+            //Route::post('update-user','UserController@updateUser');
+            //Route::post('forgot-password','UserController@forgotPassword');
         });
 
         Route::group(['namespace' => 'Api\Auth'], function () {
             Route::group(['middleware'=> ['auth:api']],function () {
-                Route::post('verify-otp','UserController@verifyOtp');
+                //Route::post('verify-otp','UserController@verifyOtp');
                 Route::get('profile','UserController@userProfile');
                 Route::post('upload-photo','UserController@uploadPhoto');
                 Route::post('create-order','OrdersController@createOrder');

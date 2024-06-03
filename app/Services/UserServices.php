@@ -18,15 +18,18 @@ class UserServices{
         $user = User::getUserByPhone($request['phone_number']);
 
         if (!$user) {
-            //event(new EventLog($user="",Event::LOGIN_FAILED_ATTEMPT,Event::LOGIN_EVENT));
-            throw new AppException('Your Account does not exists.');
-        } elseif(!Auth::validate(['phone_number'=>$request['phone_number'],'password'=>$request['password']])) {
-            throw new AppException("Invalid Credentials");
+            $input = [
+               "phone_number"=>$request['phone_number'],
+             
+            ];
+            User::register_user($input);
+        } else{
+            if(OTPVerificationServices::verifyOtpRequest($request))
+            {
+                $user['token'] = $user->createToken('MyApp')->accessToken;
+            }
         }
 
-        $user['token'] = $user->createToken('MyApp')->accessToken;
-
-        OTPVerificationServices::sendOtpService($request,$user);
 
         return $user;
 

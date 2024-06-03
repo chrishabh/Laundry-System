@@ -24,15 +24,13 @@ class VerifyOtpServiceFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone_number'            =>  'required',
-           'otp_code'   =>  'required'
+            'phone_number'            =>  'required',  
         ];
     }
 
     public function messages(){
         return [
             'phone_number.required' => 'Phone is required',
-            'otp_code.required' => 'OTP code is required',
         ];
     }
 }

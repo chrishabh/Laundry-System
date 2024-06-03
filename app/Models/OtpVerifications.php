@@ -19,16 +19,16 @@ class OtpVerifications extends Model
 
     public static function getOtpCode($phone,$type,$source)
     {
-        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->where('user_id',Auth::User()->id)->orderBy('id', 'DESC')->first();
+        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->orderBy('id', 'DESC')->first();
     }
 
     public static function deleteOtpCode($phone,$type,$source)
     {
-        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->where('user_id',Auth::User()->id)->update(['deleted_at' => Carbon::now()]);
+        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->update(['deleted_at' => Carbon::now()]);
     }
 
     public static function updateOtpStatus($phone,$type,$source,$data)
     {
-        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->where('user_id',Auth::User()->id)->update($data);
+        return  OtpVerifications::whereNull('deleted_at')->where('meta_data',$phone)->where('type_of_verification',$type)->where('source',$source)->where('verification_status', Constants::UN_VERIFIED)->update($data);
     }
 }

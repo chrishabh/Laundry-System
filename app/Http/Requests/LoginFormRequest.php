@@ -25,14 +25,14 @@ class LoginFormRequest extends FormRequest
     {
         return [
             'phone_number' => 'required',
-            'password' => 'required',
+            'otp_code'   =>  'required'
         ];
     }
 
     public function messages(){
         return [
             'phone_number.required' => 'Phone is required',
-            'password.required' => 'Password is required',
+            'otp_code.required' => 'OTP code is required',
         ];
     }
 }

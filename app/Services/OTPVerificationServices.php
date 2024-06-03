@@ -12,7 +12,7 @@ use Twilio\Rest\Client;
 
 class OTPVerificationServices{
 
-    public static function sendOtpService($request,$user)
+    public static function sendOtpService($request,$user=null)
     {
         $sid    = env("SID");
         $token  = env("TWILIO_AUTH");
@@ -38,7 +38,7 @@ class OTPVerificationServices{
             );
 
             OtpVerifications::insertOtpRequest([
-                'user_id' => $user->id,
+                'user_id' => $user->id??null,
                 'type_of_verification' => Constants::LOGIN_PHONE_VERIFICATION,
                 "meta_data" => $request['phone_number'],
                 "otp_code" => $otp,
@@ -51,7 +51,7 @@ class OTPVerificationServices{
             $otp = 123456;
 
             OtpVerifications::insertOtpRequest([
-                'user_id' => $user->id,
+                'user_id' => $user->id??null,
                 'type_of_verification' => Constants::LOGIN_PHONE_VERIFICATION,
                 "meta_data" => $request['phone_number'],
                 "otp_code" => $otp,
@@ -78,9 +78,12 @@ class OTPVerificationServices{
         if ($otp_details->otp_code == $request['otp_code'] && $otp_details->source == Constants::PHONE_2FA_VERIFICATION) {
             $verification['verification_status'] = Constants::VERIFIED;
             OtpVerifications::updateOtpStatus($request['phone_number'],Constants::LOGIN_PHONE_VERIFICATION,Constants::PHONE_2FA_VERIFICATION,$verification);
+            return true;
         } else {
             throw new AppException("Invalid OTP (One-Time Password).");
         }
+
+        return false;
         
     }
 
