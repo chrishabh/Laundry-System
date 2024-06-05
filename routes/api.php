@@ -34,6 +34,8 @@ Route::group(['middleware'=> ['tracker']],function () {
                 Route::post('edit-order','OrdersController@editOrder');
                 Route::post('order-listing','OrdersController@orderListing');
                 Route::post('update-status','OrdersController@updateOrderStatus');
+                Route::post('order-summary','OrdersController@orderSummary');
+
             });
             
         });

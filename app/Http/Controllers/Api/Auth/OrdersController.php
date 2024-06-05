@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrderFormRequest;
 use App\Http\Requests\EditOrderFormRequest;
 use App\Http\Requests\OrderListingFormRequest;
+use App\Http\Requests\OrderSummaryFormRequest;
 use App\Http\Requests\UpdateOrderStatusFormRequest;
 use App\Models\UserOrders;
 use Carbon\Carbon;
@@ -36,6 +37,11 @@ class OrdersController extends Controller
         $requestData = $request->validated();
         UserOrders::updateOrderStatus($request);
         return  response()->success();
+    }
+
+    public static function orderSummary(OrderSummaryFormRequest $request){
+        $requestData = $request->validated();
+        return  response()->data([UserOrders::orderSummary($request)]);
     }
 
 

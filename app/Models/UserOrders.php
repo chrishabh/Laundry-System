@@ -56,4 +56,13 @@ class UserOrders extends Model
     public static function updateOrderStatus($request){
        return UserOrders::whereNull('deleted_at')->where('id',$request['order_id'])->update(['status'=> $request['status']]);
     }
+
+    public static function orderSummary($request){
+
+        $user_id = Auth::User()->id;
+        
+
+        return UserOrders::whereNull('deleted_at')->where('user_id', $user_id )->where('id',$request['order_id'])->first();
+
+    }
 }
