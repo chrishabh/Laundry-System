@@ -41,7 +41,7 @@ class OrdersController extends Controller
 
     public static function orderSummary(OrderSummaryFormRequest $request){
         $request->validated();
-        return  response()->data([UserOrders::orderSummary($request)]);
+        return  response()->data(['order_summary' => UserOrders::orderSummary($request)]);
     }
 
 
