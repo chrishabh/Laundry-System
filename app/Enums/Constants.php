@@ -11,4 +11,8 @@ class Constants
    const UN_VERIFIED = "UN_VERIFIED";
    const VERIFIED = "VERIFIED";
    const PHONE_2FA_VERIFICATION = "PHONE_2FA_VERIFICATION";
+   const ADD_ADDRESS = "api/add-address";
+   const EDIT_ADDRESS = "api/edit-address";
+   const DELETE_ADDRESS = "api/delete-address";
+
 }

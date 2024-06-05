@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Services\UserServices;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddressUpdationFormRequest;
 use App\Http\Requests\ForgotPasswordFormRequest;
 use App\Http\Requests\GetPayToDetailsFormRequest;
 use App\Http\Requests\GetProjectDetialsFormRequest;
@@ -65,6 +66,39 @@ class UserController extends Controller
         $requestData = $request->validated();
         $user = new UserServices();
         if($user->updateProfile($request)){
+            return  response()->success();
+        }else{
+            throw new AppException("Something went wrong!");
+        }
+    }
+
+    public static function addAddress(AddressUpdationFormRequest  $request)
+    {
+        $requestData = $request->validated();
+        $user = new UserServices();
+        if($user->userAddress($request,'add')){
+            return  response()->success();
+        }else{
+            throw new AppException("Something went wrong!");
+        }
+    }
+
+    public static function editAddress(AddressUpdationFormRequest  $request)
+    {
+        $requestData = $request->validated();
+        $user = new UserServices();
+        if($user->userAddress($request,'edit')){
+            return  response()->success();
+        }else{
+            throw new AppException("Something went wrong!");
+        }
+    }
+
+    public static function deleteAddress(AddressUpdationFormRequest  $request)
+    {
+        $requestData = $request->validated();
+        $user = new UserServices();
+        if($user->userAddress($request,'delete')){
             return  response()->success();
         }else{
             throw new AppException("Something went wrong!");

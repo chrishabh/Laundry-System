@@ -236,4 +236,46 @@ class UserServices{
         }
         return true;
     }
+
+    public static function userAddress($request,$action)
+    {
+        if($action == "add"){
+
+            UserAddress::insertAddress([
+                'user_id' => Auth::User()->id,
+                'address_1' => $request['address_1'],
+                'address_2' => $request['address_2'],
+                'city' => $request['city'],
+                'pincode' => $request['pincode'],
+                'state' => $request['state'],
+                'country' => $request['country'],
+                'default' => $request['default'],
+            ]);
+            return true;
+
+        }
+
+        if($action == "edit"){
+            UserAddress::updateAddress($request['address_id'],Auth::User()->id,[
+                'user_id' => Auth::User()->id,
+                'address_1' => $request['address_1'],
+                'address_2' => $request['address_2'],
+                'city' => $request['city'],
+                'pincode' => $request['pincode'],
+                'state' => $request['state'],
+                'country' => $request['country'],
+                'default' => $request['default'],
+            ]);
+            return true;
+        }
+
+        if($action == "delete"){
+            
+            UserAddress::deleteAddress($request['address_id']);
+            return true;
+
+        }
+
+        return false;
+    }
 }

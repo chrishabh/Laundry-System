@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,13 @@ class UserAddress extends Model
         UserAddress::insert($data);
     }
 
-    public static function updateAddress($id,$data = [])
+    public static function updateAddress($id,$user_id,$data = [])
     {
-        UserAddress::whereNull('deleted_at')->update($data);
+        UserAddress::whereNull('deleted_at')->where('id',$id)->where('user_id',$user_id)->update($data);
+    }
+
+    public static function deleteAddress($id)
+    {
+        UserAddress::whereNull('deleted_at')->where('id',$id)->update(['deleted_at' => Carbon::now()]);
     }
 }
