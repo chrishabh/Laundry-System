@@ -21,10 +21,11 @@ class Service extends Model
         $services_group_by = group_by('service', $services);
 
         foreach($services_group_by as $key => $services_value){
-            $data['title'] = $key;
-            $data['data'][] = $services_group_by[$key];
 
-            $return = $data;
+            $data['title'] = $key;
+            $data['data'] = $services_group_by[$key];
+
+            $return [] = $data;
         }
 
         return $return;

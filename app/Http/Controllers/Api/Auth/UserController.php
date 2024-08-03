@@ -140,7 +140,7 @@ class UserController extends Controller
     {
         $user = new UserServices();
         $data = $user->dashboard();
-        return  response()->data(['data'=>$data]);
+        return  response()->data($data);
     }
 
     public static function updateUser(UpdateUserRoleFormRequest  $request)
