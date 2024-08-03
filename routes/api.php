@@ -38,6 +38,7 @@ Route::group(['middleware'=> ['tracker']],function () {
                 Route::post('add-address','UserController@updateProfile');
                 Route::post('edit-address','UserController@updateProfile');
                 Route::post('delete-address','UserController@updateProfile');
+                Route::get('dashboard','UserController@dashboard');
 
             });
             

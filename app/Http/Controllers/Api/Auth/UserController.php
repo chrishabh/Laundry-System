@@ -136,6 +136,13 @@ class UserController extends Controller
         return  response()->data(['user_list'=>$data]);
     }
 
+    public static function dashboard()
+    {
+        $user = new UserServices();
+        $data = $user->dashboard();
+        return  response()->data(['data'=>$data]);
+    }
+
     public static function updateUser(UpdateUserRoleFormRequest  $request)
     {
         $user = new UserServices();

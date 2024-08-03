@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Exceptions\AppException;
 use App\Exceptions\BusinessExceptions\RegisterFailedException;
+use App\Models\CategoryData;
+use App\Models\Service;
 use App\Models\UserAddress;
 use App\Models\UserAuthorization;
 use App\Models\UserPhotos;
@@ -277,5 +279,13 @@ class UserServices{
         }
 
         return false;
+    }
+
+    public static function dashboard()
+    {
+        $return['Category_Data'] = CategoryData::getDashboardCategoryData();
+        $return['Services'] = Service::getDashboardServiceData();
+
+        return $return;
     }
 }
