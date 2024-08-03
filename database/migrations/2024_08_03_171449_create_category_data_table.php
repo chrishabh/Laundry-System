@@ -13,19 +13,19 @@ class CreateCategoryDataTable extends Migration
      */
     public function up()
     {
-        // Schema::create('category_data', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->bigInteger('category_id');
-        //     $table->foreign('category_id')->references('id')->on('categories');
-        //     $table->text('label');
-        //     $table->string('price')->nullable();
-        //     $table->string('maxQuantity')->nullable();
-        //     $table->string('image_path')->nullable();
-        //     $table->softDeletes();
-        //     $table->timestamp('created_at')->useCurrent();
-        //     $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+        Schema::create('category_data', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->text('label');
+            $table->string('price')->nullable();
+            $table->string('maxQuantity')->nullable();
+            $table->string('image_path')->nullable();
+            $table->softDeletes();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
-        // });
+        });
     }
 
     /**
