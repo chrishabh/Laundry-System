@@ -15,7 +15,7 @@ class CreateCategoryDataTable extends Migration
     {
         Schema::create('category_data', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id');
+            $table->integer('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->text('label');
             $table->string('price')->nullable();
